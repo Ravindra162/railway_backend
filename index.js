@@ -11,8 +11,8 @@ const transporter = createTransport({
     port: 587,
     secure: false, // Use `true` for port 465, `false` for all other ports
     auth: {
-      user: "ravnarravnar@gmail.com",
-      pass: "wtut nslq hxwx pnwv ",
+      user: process.env.EMAIL,
+      pass: process.env.EMAIL_PASSWORD,
     },
   });
 const pool = mysql.createPool({
@@ -46,6 +46,10 @@ const authMiddleware = (req,res,next) =>{
     }
 
 }
+app.get('/',(req,res)=>{
+    res.send("RailQuest Backend Nodejs API")
+}
+       )
 app.post('/api/register', async (req, res) => {
    
     const {username, email, password} = req.body
